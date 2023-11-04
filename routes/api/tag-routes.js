@@ -3,9 +3,9 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
+// GET all tags
 router.get('/', async (req, res) => {
   try {
-    // find all tags
     // be sure to include its associated Product data
     const tagsData = await Tag.findAll({
       include: [
@@ -24,8 +24,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET one tag by its ID
 router.get('/:id', async (req, res) => {
-  // find a single tag by its `id`
   // be sure to include its associated Product data
   try {
     const tagData = await Tag.findByPk(req.params.id, {
@@ -51,21 +51,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// create (POST) new tag
 router.post('/', async (req, res) => {
   try {
-    // create a new tag
     const newTag = await Tag.create(req.body);
 
-    res.status(200).json(newTag);
+    res.status(201).json(newTag);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
   }
 });
 
+// update (PUT) tag
 router.put('/:id', async (req, res) => {
   try {
-    // update a tag's name by its `id` value
     const updatedTag = await Tag.update(
       { tag_name: req.body.tag_name },
       {
@@ -82,10 +82,9 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// DELETE one tag by its ID
 router.delete('/:id', async (req, res) => {
   try {
-    // delete on tag by its `id` value
-    // if delete a category, onDelete CASCADE would ensure products are not left without a category
     const deletedTag = await Tag.destroy({
       where: {
         id: req.params.id,

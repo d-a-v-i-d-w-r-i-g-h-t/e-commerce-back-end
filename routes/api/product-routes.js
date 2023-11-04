@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
+const { update } = require('../../models/Product');
 
 // The `/api/products` endpoint
 
@@ -14,6 +15,7 @@ router.get('/', async (req, res) => {
         { model: Tag, attributes: ['id', 'tag_name'], through: ProductTag },
       ],
     });
+
     res.status(200).json(productsData);
   } catch (err) {
     console.log(err);
@@ -21,10 +23,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET one product
+// GET one product by its ID
 router.get('/:id', async (req, res) => {
   try {
-    // find a single product by its `id`
     // be sure to include its associated Category and Tag data
     const productData = await Product.findByPk(req.params.id, {
       include: [
@@ -35,7 +36,7 @@ router.get('/:id', async (req, res) => {
   
     // check if the product with that ID exists
     if (!productData) {
-      res.status(404).json({ message: 'Product not found' });
+      res.status(404).json({ message: 'No product found with this id' });
       return;
     }
   
@@ -71,7 +72,7 @@ router.post('/', async (req, res) => {
       await ProductTag.bulkCreate(productTagIdArr);
     }
     
-    res.status(200).json(newProduct);
+    res.status(201).json(newProduct);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -81,18 +82,12 @@ router.post('/', async (req, res) => {
 // update (PUT) product
 router.put('/:id', async (req, res) => {
   try {
-    // update product data
-    const [rowsUpdated, [updatedProduct]] = await Product.update(req.body, {
+    const updatedProduct = await Product.update(req.body, {
       where: {
         id: req.params.id,
       },
-      returning: true,
     });
-
-    if (rowsUpdated === 0) {
-      res.status(404).json({ message: 'Product not found' });
-      return;
-    }
+    console.log(updatedProduct);
 
     // if there are tags, update the associations in the ProductTag model
     if (req.body.tagIds && req.body.tagIds.length) {
@@ -133,7 +128,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE one product by ID
+// DELETE one product by its ID
 router.delete('/:id', async (req, res) => {
   try {
     const deletedProduct = await Product.destroy({
@@ -144,7 +139,7 @@ router.delete('/:id', async (req, res) => {
 
     // check if successfully deleted
     if (!deletedProduct) {
-      res.status(404).json({ message: 'Product not found' });
+      res.status(404).json({ message: 'No product found with this id' });
       return;
     }
 
