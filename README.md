@@ -2,10 +2,20 @@
 
 ## Description 
 
-For this project, I had to build the back end for an e-commerce site. I had to take a working Express.js API and configure it to use Sequelize to interact with a MySQL database. This application wasn't deployed, so I created a walkthrough video that demonstrates its functionality. A link to the video is provided below in the [Usage](#usage) section.
+For this project, I had to build the back end for an e-commerce site. I had to take a working Express.js API and configure it to use the [MySQl 2](https://www.npmjs.com/package/mysql2/v/2.1.0) and [Sequelize](https://www.npmjs.com/package/sequelize/v/6.34.0) packages to interact with a [MySQL](https://www.mysql.com/) database. I also used the [dotenv](https://www.npmjs.com/package/dotenv/v/8.2.0) package to store sensitive data, including the MySQL username, password, and database name.
 
-The database contains three tables: Products, Categories, and Tags. All three tables have full Create, Read, Update, and Delete (CRUD) capability, including GET all, GET one by id, POST (create), PUT (update), and DELETE. 
+The application contains three models: **Product**, **Category**, and **Tag**. All three models have full **Create, Read, Update, and Delete** (CRUD) capability, including
+- GET all, 
+- GET one by id, 
+- POST (create), 
+- PUT (update), and 
+- DELETE.
 
+Additionally, the models include proper association methods:
+- **Category** and **Product** have a *one-to-many* association. A category can have many products, but a product can have only one category.
+- **Tag** and **Product** have a *many-to-many* association. A tag can be assigned to many different products, and a product can be assigned to many different tags.
+
+This application wasn't deployed, so I created a walkthrough video that demonstrates its functionality. A link to the video is provided below in the [Usage](#usage) section.
 
 
 ## Installation
@@ -27,7 +37,7 @@ Seed the database from the same directory with the command
 npm run seed
 ```
 
-Update the password in file ```/lib/mysqlQuery.js``` as desired.
+Create a ```.env``` file in the installation directory that contains the MySQL database name, username, and password. For the provided testing schema, the database name is ```ecommerce_db```.
 
 
 ## Usage
@@ -47,16 +57,16 @@ node server.js
 
 ![Starting the server](assets/images/npm-start.png)
 
-As this application is only the back end, routes and functionality can be demonstarted and tested using Insomnia, as shown above in the walkthrough video.
+As this application is only the back end, routes and functionality can be demonstrated and tested using [Insomnia](https://insomnia.rest/products/insomnia), as shown in the screenshot below, as well as above in the walkthrough video.
 
-![Testing with Insomia](assets/images/insomnia.png)
+![Testing with Insomnia](assets/images/insomnia.png)
 
 
 ## Credits
 
 I used [Express](https://www.npmjs.com/package/express/v/4.17.1) to manage routing and middleware.
 
-I used [dotenv](https://www.npmjs.com/package/dotenv/v/8.2.0) to to load environment variables.
+I used [dotenv](https://www.npmjs.com/package/dotenv/v/8.2.0) to store sensitive data and load environment variables.
 
 I used [MySQL](https://www.mysql.com/), specifically [MySQL 2](https://www.npmjs.com/package/mysql2/v/2.1.0), to interface with the database.
 
