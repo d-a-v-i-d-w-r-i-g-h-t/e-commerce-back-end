@@ -2,7 +2,7 @@
 
 ## Description 
 
-For this project, I had to build the back end for an e-commerce site. I had to take a working Express.js API and configure it to use the [MySQl 2](https://www.npmjs.com/package/mysql2/v/2.1.0) and [Sequelize](https://www.npmjs.com/package/sequelize/v/6.34.0) packages to interact with a [MySQL](https://www.mysql.com/) database. I also used the [dotenv](https://www.npmjs.com/package/dotenv/v/8.2.0) package to store sensitive data, including the MySQL username, password, and database name.
+For this project, I had to build the back end for an e-commerce site. I had to take a working [Express.js](https://www.npmjs.com/package/express/v/4.17.1) API and configure it to use the [MySQl 2](https://www.npmjs.com/package/mysql2/v/2.1.0) and [Sequelize](https://www.npmjs.com/package/sequelize/v/6.34.0) packages to interact with a [MySQL](https://www.mysql.com/) database. I also used the [dotenv](https://www.npmjs.com/package/dotenv/v/8.2.0) package to store sensitive data, including the MySQL username, password, and database name.
 
 The application contains three models: **Product**, **Category**, and **Tag**. All three models have full **Create, Read, Update, and Delete** (CRUD) capability, including
 - GET all, 
