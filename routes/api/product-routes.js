@@ -82,17 +82,25 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     // update product data
-    const updatedProduct = await Product.update(req.body, {
+    const [rowsUpdated, [updatedProduct]] = await Product.update(req.body, {
       where: {
         id: req.params.id,
       },
+      returning: true,
     });
+
+    if (rowsUpdated === 0) {
+      res.status(404).json({ message: 'Product not found' });
+      return;
+    }
 
     // if there are tags, update the associations in the ProductTag model
     if (req.body.tagIds && req.body.tagIds.length) {
       
-      ProductTag.findAll({
-        where: { product_id: req.params.id }
+      const productTags = await ProductTag.findAll({
+        where: {
+          product_id: req.params.id,
+        }
       });
       
       // create filtered list of new tag_ids

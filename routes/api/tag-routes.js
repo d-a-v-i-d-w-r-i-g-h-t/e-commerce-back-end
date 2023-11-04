@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
     });
 
     // check if the tag with the given ID exists
-    if (!tag) {
+    if (!tagData) {
       res.status(404).json({ message: 'Tag not found' });
       return;
     }
