@@ -4,6 +4,9 @@
 
 For this project, I had to build the back end for an e-commerce site. I had to take a working Express.js API and configure it to use Sequelize to interact with a MySQL database. This application wasn't deployed, so I created a walkthrough video that demonstrates its functionality. A link to the video is provided below in the [Usage](#usage) section.
 
+The database contains three tables: Products, Categories, and Tags. All three tables have full Create, Read, Update, and Delete (CRUD) capability, including GET all, GET one by id, POST (create), PUT (update), and DELETE. 
+
+
 
 ## Installation
 
@@ -29,9 +32,9 @@ Update the password in file ```/lib/mysqlQuery.js``` as desired.
 
 ## Usage
 
-A video walkthrough demonstrating application functionality is available [here](screencastify).
+A video walkthrough demonstrating application functionality is available [here](https://watch.screencastify.com/v/x7WO4nYb6gloKhppT4Pj).
 
-To start the application, use the command
+To start the server, use the command
 
 ```
 npm start
@@ -42,16 +45,11 @@ or
 node server.js
 ```
 
+![Starting the server](assets/images/npm-start.png)
 
+As this application is only the back end, routes and functionality can be demonstarted and tested using Insomnia, as shown above in the walkthrough video.
 
-
-Provide instructions and examples for use. Include screenshots as needed. 
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-```md
-![alt text](assets/images/screenshot.png)
-```
+![Testing with Insomia](assets/images/insomnia.png)
 
 
 ## Credits
