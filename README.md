@@ -18,7 +18,24 @@ At a minimum, your project README needs a title and a short description explaini
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+Copy all files and folders from the repo to the desired location. On the command line, navigate to the installation directory and install dependencies with the command
+
+```
+npm install
+```
+
+Create the database from a MySQL command line in the same directory with the command
+
+```
+source db/schema.sql;
+```
+Seed the database from the same directory with the command
+
+```
+npm run seed
+```
+
+Update the password in file ```/lib/mysqlQuery.js``` as desired.
 
 
 ## Usage
