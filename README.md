@@ -67,11 +67,13 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+I used [Express](https://www.npmjs.com/package/express/v/4.17.1) to manage routing and middleware.
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+I used [dotenv](https://www.npmjs.com/package/dotenv/v/8.2.0) to to load environment variables.
 
-If you followed tutorials, include links to those here as well.
+I used [MySQL](https://www.mysql.com/), specifically [MySQL 2](https://www.npmjs.com/package/mysql2/v/2.1.0), to interface with the database.
+
+I used [Sequelize](https://www.npmjs.com/package/sequelize/v/6.34.0) to define models, make associations, and handle requests.
 
 
 ## License
